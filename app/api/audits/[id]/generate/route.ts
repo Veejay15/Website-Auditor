@@ -22,7 +22,7 @@ export async function POST(_req: NextRequest, { params }: Params) {
   const authError = await requireAuth();
   if (authError) return authError;
   const { id } = await params;
-  const audit = readAudit(id);
+  const audit = await readAudit(id);
   if (!audit) return NextResponse.json({ error: 'Audit not found' }, { status: 404 });
 
   if (isGithubConfigured()) {
@@ -31,7 +31,7 @@ export async function POST(_req: NextRequest, { params }: Params) {
       await dispatchAuditWorkflow(audit.id);
       const run = await findLatestWorkflowRun('generate-audit.yml', dispatchTime);
       const next = { ...audit, status: 'queued' as const, workflowRunId: run?.id };
-      upsertAudit(next);
+      await upsertAudit(next);
       return NextResponse.json({
         ok: true,
         audit: next,
@@ -46,7 +46,7 @@ export async function POST(_req: NextRequest, { params }: Params) {
   }
 
   // Local fallback - run inline.
-  upsertAudit({ ...audit, status: 'running' });
+  await upsertAudit({ ...audit, status: 'running' });
   const errors: string[] = [];
 
   try {
@@ -72,14 +72,14 @@ export async function POST(_req: NextRequest, { params }: Params) {
       errors.push('ANTHROPIC_API_KEY not set — narrative writing skipped.');
     }
 
-    upsertAudit({ ...audit, status: 'complete', errors: errors.length ? errors : undefined });
+    await upsertAudit({ ...audit, status: 'complete', errors: errors.length ? errors : undefined });
     return NextResponse.json({
       ok: true,
       message: 'Audit generation complete.',
       errors: errors.length ? errors : undefined,
     });
   } catch (err) {
-    upsertAudit({ ...audit, status: 'failed', errors: [(err as Error).message] });
+    await upsertAudit({ ...audit, status: 'failed', errors: [(err as Error).message] });
     return NextResponse.json({ error: (err as Error).message }, { status: 500 });
   }
 }

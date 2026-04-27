@@ -6,7 +6,7 @@ import { formatDateTime } from '@/lib/utils';
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  const audits = readAuditsIndex();
+  const audits = await readAuditsIndex();
   const { thisMonth, total } = statsByMonth(audits);
   const completed = audits.filter((a) => a.status === 'complete').length;
   const inProgress = audits.filter(

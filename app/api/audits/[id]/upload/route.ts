@@ -43,7 +43,7 @@ export async function POST(req: NextRequest, { params }: Params) {
   const authError = await requireAuth();
   if (authError) return authError;
   const { id } = await params;
-  const audit = readAudit(id);
+  const audit = await readAudit(id);
   if (!audit) return NextResponse.json({ error: 'Audit not found' }, { status: 404 });
 
   let formData: FormData;
@@ -106,7 +106,7 @@ export async function POST(req: NextRequest, { params }: Params) {
     client: { ...audit.client, ...(logoBlob ? { logoBlob } : {}) },
     uploads: updates,
   };
-  upsertAudit(next);
+  await upsertAudit(next);
 
   return NextResponse.json({ ok: true, errors: errors.length ? errors : undefined });
 }

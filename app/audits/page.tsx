@@ -6,7 +6,7 @@ import { AuditsList } from './audits-list';
 export const dynamic = 'force-dynamic';
 
 export default async function AuditsPage() {
-  const audits = readAuditsIndex();
+  const audits = await readAuditsIndex();
 
   return (
     <div className="space-y-6">

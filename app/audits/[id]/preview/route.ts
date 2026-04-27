@@ -17,7 +17,7 @@ export async function GET(req: NextRequest, { params }: Params) {
   }
 
   const { id } = await params;
-  const audit = readAudit(id);
+  const audit = await readAudit(id);
   if (!audit) {
     return new Response('Audit not found', {
       status: 404,

@@ -15,7 +15,7 @@ export async function POST(_req: NextRequest, { params }: Params) {
   if (authError) return authError;
 
   const { id } = await params;
-  const audit = readAudit(id);
+  const audit = await readAudit(id);
   if (!audit) return NextResponse.json({ error: 'Audit not found' }, { status: 404 });
   if (!isClaudeConfigured()) {
     return NextResponse.json(

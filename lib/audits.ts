@@ -1,15 +1,20 @@
 import fs from 'fs';
 import path from 'path';
 import { Audit, AuditsIndex } from './types';
+import { commitJsonFile, isGithubConfigured, readJsonFromRepo } from './github';
 
 const AUDITS_DIR = path.join(process.cwd(), 'data', 'audits');
 const INDEX_PATH = path.join(process.cwd(), 'data', 'audits.json');
 
 function ensureDirs() {
-  fs.mkdirSync(AUDITS_DIR, { recursive: true });
+  try {
+    fs.mkdirSync(AUDITS_DIR, { recursive: true });
+  } catch {
+    // Read-only filesystem on Vercel - this is fine; we'll fall through to GitHub.
+  }
 }
 
-export function readAuditsIndex(): Audit[] {
+function readLocalIndex(): Audit[] {
   if (!fs.existsSync(INDEX_PATH)) return [];
   try {
     const raw = fs.readFileSync(INDEX_PATH, 'utf-8');
@@ -20,19 +25,50 @@ export function readAuditsIndex(): Audit[] {
   }
 }
 
-export function writeAuditsIndex(audits: Audit[]): void {
-  ensureDirs();
-  const data: AuditsIndex = { audits };
-  fs.writeFileSync(INDEX_PATH, JSON.stringify(data, null, 2) + '\n', 'utf-8');
+/**
+ * Read the audits index. Prefers GitHub when configured (production path on Vercel),
+ * falls back to the local filesystem (dev path). The Vercel deployment bundle
+ * may also include a build-time snapshot, but we always read fresh from GitHub
+ * when configured so writes propagate without a redeploy.
+ */
+export async function readAuditsIndex(): Promise<Audit[]> {
+  if (isGithubConfigured()) {
+    try {
+      const data = await readJsonFromRepo<AuditsIndex>('data/audits.json');
+      if (data) return data.audits || [];
+    } catch (err) {
+      console.error('readAuditsIndex: GitHub read failed, falling back to FS:', err);
+    }
+  }
+  return readLocalIndex();
 }
 
-export function readAudit(id: string): Audit | null {
-  const audits = readAuditsIndex();
+/**
+ * Write the audits index. Always tries local FS first (works in dev). When
+ * GitHub is configured, also commits the file back to the repo - that's the
+ * source of truth on Vercel where the local FS is read-only.
+ */
+export async function writeAuditsIndex(audits: Audit[]): Promise<void> {
+  ensureDirs();
+  const data: AuditsIndex = { audits };
+  const json = JSON.stringify(data, null, 2) + '\n';
+  try {
+    fs.writeFileSync(INDEX_PATH, json, 'utf-8');
+  } catch {
+    // Read-only filesystem on Vercel - GitHub commit is the persistent path.
+  }
+  if (isGithubConfigured()) {
+    await commitJsonFile('data/audits.json', data, 'Update audits index');
+  }
+}
+
+export async function readAudit(id: string): Promise<Audit | null> {
+  const audits = await readAuditsIndex();
   return audits.find((a) => a.id === id || a.slug === id) || null;
 }
 
-export function upsertAudit(audit: Audit): Audit {
-  const audits = readAuditsIndex();
+export async function upsertAudit(audit: Audit): Promise<Audit> {
+  const audits = await readAuditsIndex();
   const idx = audits.findIndex((a) => a.id === audit.id);
   const next = { ...audit, updatedAt: new Date().toISOString() };
   if (idx === -1) {
@@ -40,15 +76,15 @@ export function upsertAudit(audit: Audit): Audit {
   } else {
     audits[idx] = next;
   }
-  writeAuditsIndex(audits);
+  await writeAuditsIndex(audits);
   return next;
 }
 
-export function deleteAudit(id: string): boolean {
-  const audits = readAuditsIndex();
+export async function deleteAudit(id: string): Promise<boolean> {
+  const audits = await readAuditsIndex();
   const next = audits.filter((a) => a.id !== id);
   if (next.length === audits.length) return false;
-  writeAuditsIndex(next);
+  await writeAuditsIndex(next);
   return true;
 }
 

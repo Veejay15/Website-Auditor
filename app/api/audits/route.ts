@@ -7,7 +7,7 @@ import { shortId, slugify } from '@/lib/utils';
 export async function GET() {
   const authError = await requireAuth();
   if (authError) return authError;
-  return NextResponse.json({ audits: readAuditsIndex() });
+  return NextResponse.json({ audits: await readAuditsIndex() });
 }
 
 export async function POST(req: NextRequest) {
@@ -40,6 +40,6 @@ export async function POST(req: NextRequest) {
     updatedAt: now,
   };
 
-  const saved = upsertAudit(audit);
+  const saved = await upsertAudit(audit);
   return NextResponse.json({ audit: saved });
 }

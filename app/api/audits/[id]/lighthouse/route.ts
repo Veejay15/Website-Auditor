@@ -20,7 +20,7 @@ export async function POST(req: NextRequest, { params }: Params) {
   if (authError) return authError;
 
   const { id } = await params;
-  const audit = readAudit(id);
+  const audit = await readAudit(id);
   if (!audit) return NextResponse.json({ error: 'Audit not found' }, { status: 404 });
   if (!audit.client.url) {
     return NextResponse.json({ error: 'Audit has no client URL' }, { status: 400 });

@@ -12,7 +12,7 @@ interface Props {
 
 export default async function AuditDetailPage({ params }: Props) {
   const { id } = await params;
-  const audit = readAudit(id);
+  const audit = await readAudit(id);
   if (!audit) notFound();
 
   const competitorCount = audit.competitors.length;
