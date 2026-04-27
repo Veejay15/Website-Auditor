@@ -58,6 +58,7 @@ export async function POST(req: NextRequest, { params }: Params) {
   return NextResponse.json({ ok: true, results });
 }
 
-// PSI calls take ~10-30s; allow up to 2 min total.
-export const maxDuration = 120;
+// Vercel Hobby caps function duration at 60s. PSI calls usually finish in
+// 20-40s for client + competitors when run in parallel.
+export const maxDuration = 60;
 export const runtime = 'nodejs';
