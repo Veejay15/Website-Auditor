@@ -84,5 +84,9 @@ export async function POST(_req: NextRequest, { params }: Params) {
   }
 }
 
-export const maxDuration = 300;
+// Vercel Hobby caps function duration at 60s; Pro at 300s.
+// On Hobby, the inline-generation fallback will time out for full audits — use
+// the GitHub Actions workflow (set GITHUB_TOKEN + GITHUB_OWNER + GITHUB_REPO)
+// or upgrade to Pro for inline generation.
+export const maxDuration = 60;
 export const runtime = 'nodejs';

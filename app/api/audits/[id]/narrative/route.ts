@@ -33,5 +33,8 @@ export async function POST(_req: NextRequest, { params }: Params) {
   return NextResponse.json({ ok: true, sections: Object.keys(narratives), bytes: JSON.stringify(narratives).length });
 }
 
-export const maxDuration = 120;
+// Narrative generation runs 8 sequential Claude calls, takes ~60-90s total.
+// Vercel Hobby caps at 60s — Pro is needed for this route to complete inline.
+// Alternative: use the GitHub Actions workflow for generation.
+export const maxDuration = 60;
 export const runtime = 'nodejs';
