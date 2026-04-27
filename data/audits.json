@@ -1,28 +1,6 @@
 {
   "audits": [
     {
-      "id": "moh3kj1r-4kje70",
-      "slug": "untitled-audit-moh3kj",
-      "status": "draft",
-      "client": {
-        "name": "",
-        "url": "",
-        "location": "",
-        "services": [],
-        "brandAccentColor": "#dc2626"
-      },
-      "competitors": [],
-      "mapPackQueries": [],
-      "mapPackResults": {},
-      "uploads": {},
-      "revenueInputs": {
-        "aov": 240,
-        "conversionRate": 0.028000000000000004
-      },
-      "createdAt": "2026-04-27T11:11:47.823Z",
-      "updatedAt": "2026-04-27T11:11:57.991Z"
-    },
-    {
       "id": "bracelab-fixture",
       "slug": "bracelab-fixture",
       "status": "draft",
