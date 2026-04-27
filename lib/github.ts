@@ -42,18 +42,32 @@ export async function commitJsonFile(
     const existing = await octokit.repos.getContent({ owner, repo, path: filePath, ref: branch });
     if ('sha' in existing.data) sha = existing.data.sha;
   } catch (err: unknown) {
-    if ((err as { status?: number }).status !== 404) throw err;
+    const status = (err as { status?: number }).status;
+    if (status !== 404) {
+      throw new Error(
+        `GitHub getContent failed (${status}) for ${owner}/${repo}@${branch}:${filePath} — ${(err as Error).message}`
+      );
+    }
   }
 
-  await octokit.repos.createOrUpdateFileContents({
-    owner,
-    repo,
-    path: filePath,
-    message,
-    content: newContentBase64,
-    branch,
-    sha,
-  });
+  try {
+    await octokit.repos.createOrUpdateFileContents({
+      owner,
+      repo,
+      path: filePath,
+      message,
+      content: newContentBase64,
+      branch,
+      sha,
+    });
+  } catch (err: unknown) {
+    const e = err as { status?: number; response?: { data?: { message?: string } }; message?: string };
+    const detail = e.response?.data?.message || e.message || 'unknown';
+    throw new Error(
+      `GitHub commitJsonFile failed (${e.status || '?'}) for ${owner}/${repo}@${branch}:${filePath} — ${detail}. ` +
+        `Verify GITHUB_TOKEN has Contents:Read+Write on ${owner}/${repo}.`
+    );
+  }
 }
 
 export async function commitAuditsIndex(audits: Audit[], message: string): Promise<void> {
