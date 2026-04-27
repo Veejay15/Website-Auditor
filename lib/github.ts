@@ -1,10 +1,12 @@
 import { Octokit } from '@octokit/rest';
 import { Audit, AppSettings } from './types';
 
-const owner = process.env.GITHUB_OWNER || '';
-const repo = process.env.GITHUB_REPO || 'client-website-auditor';
-const branch = process.env.GITHUB_BRANCH || 'main';
-const token = process.env.GITHUB_TOKEN || '';
+// Trim env vars - dashboard copy/paste often includes trailing whitespace or
+// newlines that turn into %0A in URL-encoded API requests, causing 404s.
+const owner = (process.env.GITHUB_OWNER || '').trim();
+const repo = (process.env.GITHUB_REPO || 'client-website-auditor').trim();
+const branch = (process.env.GITHUB_BRANCH || 'main').trim();
+const token = (process.env.GITHUB_TOKEN || '').trim();
 
 function client(): Octokit {
   if (!token) throw new Error('GITHUB_TOKEN is not set');
