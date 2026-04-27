@@ -1,0 +1,39 @@
+{
+  "name": "makarios-client-auditor",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "audit:generate": "tsx scripts/generate-audit.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.90.0",
+    "@octokit/rest": "^22.0.1",
+    "@vercel/blob": "^2.3.3",
+    "clsx": "^2.1.1",
+    "fast-xml-parser": "^5.7.1",
+    "html2canvas-pro": "^2.0.2",
+    "jspdf": "^4.2.1",
+    "lucide-react": "^1.8.0",
+    "next": "16.2.4",
+    "papaparse": "^5.5.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "tailwind-merge": "^3.5.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/papaparse": "^5.5.2",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.4",
+    "tailwindcss": "^4",
+    "tsx": "^4.21.0",
+    "typescript": "^5"
+  }
+}

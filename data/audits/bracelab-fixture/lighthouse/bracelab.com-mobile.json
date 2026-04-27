@@ -1,0 +1,162 @@
+{
+  "url": "https://bracelab.com/",
+  "strategy": "mobile",
+  "scores": {
+    "performance": 28,
+    "seo": 91,
+    "accessibility": 67,
+    "bestPractices": 57
+  },
+  "metrics": {
+    "lcp": {
+      "value": 30846.923000000003,
+      "display": "30.8 s"
+    },
+    "fcp": {
+      "value": 18673.745,
+      "display": "18.7 s"
+    },
+    "tbt": {
+      "value": 1646.808000000001,
+      "display": "1,650 ms"
+    },
+    "cls": {
+      "value": 0.035595999999999996,
+      "display": "0.036"
+    },
+    "speedIndex": {
+      "value": 19931.371743573887,
+      "display": "19.9 s"
+    }
+  },
+  "opportunities": [
+    {
+      "id": "render-blocking-resources",
+      "title": "Eliminate render-blocking resources",
+      "savingsMs": 15887,
+      "description": "Resources are blocking the first paint of your page. Consider delivering critical JS/CSS inline and deferring all non-critical JS/styles. [Learn how to eliminate render-blocking resources](https://developer.chrome.com/docs/lighthouse/performance/render-blocking-resources/)."
+    },
+    {
+      "id": "modern-image-formats",
+      "title": "Serve images in next-gen formats",
+      "savingsMs": 8030,
+      "description": "Image formats like WebP and AVIF often provide better compression than PNG or JPEG, which means faster downloads and less data consumption. [Learn more about modern image formats](https://developer.chrome.com/docs/lighthouse/performance/uses-webp-images/)."
+    },
+    {
+      "id": "uses-responsive-images",
+      "title": "Properly size images",
+      "savingsMs": 7590,
+      "description": "Serve images that are appropriately-sized to save cellular data and improve load time. [Learn how to size images](https://developer.chrome.com/docs/lighthouse/performance/uses-responsive-images/)."
+    },
+    {
+      "id": "unused-javascript",
+      "title": "Reduce unused JavaScript",
+      "savingsMs": 1100,
+      "description": "Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/)."
+    },
+    {
+      "id": "uses-rel-preconnect",
+      "title": "Preconnect to required origins",
+      "savingsMs": 494.884,
+      "description": "Consider adding `preconnect` or `dns-prefetch` resource hints to establish early connections to important third-party origins. [Learn how to preconnect to required origins](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/)."
+    },
+    {
+      "id": "unused-css-rules",
+      "title": "Reduce unused CSS",
+      "savingsMs": 370,
+      "description": "Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. [Learn how to reduce unused CSS](https://developer.chrome.com/docs/lighthouse/performance/unused-css-rules/)."
+    }
+  ],
+  "failedAudits": [
+    {
+      "id": "errors-in-console",
+      "title": "Browser errors were logged to the console",
+      "category": "best-practices",
+      "description": "Errors logged to the console indicate unresolved problems. They can come from network request failures and other browser concerns. [Learn more about this errors in console diagnostic audit](https://developer.chrome.com/docs/lighthouse/best-practices/errors-in-console/)"
+    },
+    {
+      "id": "deprecations",
+      "title": "Uses deprecated APIs",
+      "category": "best-practices",
+      "description": "Deprecated APIs will eventually be removed from the browser. [Learn more about deprecated APIs](https://developer.chrome.com/docs/lighthouse/best-practices/deprecations/)."
+    },
+    {
+      "id": "third-party-cookies",
+      "title": "Uses third-party cookies",
+      "category": "best-practices",
+      "description": "Third-party cookies may be blocked in some contexts. [Learn more about preparing for third-party cookie restrictions](https://privacysandbox.google.com/cookies/prepare/overview)."
+    },
+    {
+      "id": "valid-source-maps",
+      "title": "Missing source maps for large first-party JavaScript",
+      "category": "best-practices",
+      "description": "Source maps translate minified code to the original source code. This helps developers debug in production. In addition, Lighthouse is able to provide further insights. Consider deploying source maps to take advantage of these benefits. [Learn more about source maps](https://developer.chrome.com/docs/devtools/javascript/source-maps/)."
+    },
+    {
+      "id": "aria-allowed-attr",
+      "title": "`[aria-*]` attributes do not match their roles",
+      "category": "accessibility",
+      "description": "Each ARIA `role` supports a specific subset of `aria-*` attributes. Mismatching these invalidates the `aria-*` attributes. [Learn how to match ARIA attributes to their roles](https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr)."
+    },
+    {
+      "id": "aria-prohibited-attr",
+      "title": "Elements use prohibited ARIA attributes",
+      "category": "accessibility",
+      "description": "Using ARIA attributes in roles where they are prohibited can mean that important information is not communicated to users of assistive technologies. [Learn more about prohibited ARIA roles](https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr)."
+    },
+    {
+      "id": "aria-required-children",
+      "title": "Elements with an ARIA `[role]` that require children to contain a specific `[role]` are missing some or all of those required children.",
+      "category": "accessibility",
+      "description": "Some ARIA parent roles must contain specific child roles to perform their intended accessibility functions. [Learn more about roles and required children elements](https://dequeuniversity.com/rules/axe/4.10/aria-required-children)."
+    },
+    {
+      "id": "aria-required-parent",
+      "title": "`[role]`s are not contained by their required parent element",
+      "category": "accessibility",
+      "description": "Some ARIA child roles must be contained by specific parent roles to properly perform their intended accessibility functions. [Learn more about ARIA roles and required parent element](https://dequeuniversity.com/rules/axe/4.10/aria-required-parent)."
+    },
+    {
+      "id": "color-contrast",
+      "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+      "category": "accessibility",
+      "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast)."
+    },
+    {
+      "id": "frame-title",
+      "title": "`<frame>` or `<iframe>` elements do not have a title",
+      "category": "accessibility",
+      "description": "Screen reader users rely on frame titles to describe the contents of frames. [Learn more about frame titles](https://dequeuniversity.com/rules/axe/4.10/frame-title)."
+    },
+    {
+      "id": "image-alt",
+      "title": "Image elements do not have `[alt]` attributes",
+      "category": "seo",
+      "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt)."
+    },
+    {
+      "id": "label-content-name-mismatch",
+      "title": "Elements with visible text labels do not have matching accessible names.",
+      "category": "accessibility",
+      "description": "Visible text labels that do not match the accessible name can result in a confusing experience for screen reader users. [Learn more about accessible names](https://dequeuniversity.com/rules/axe/4.10/label-content-name-mismatch)."
+    },
+    {
+      "id": "link-name",
+      "title": "Links do not have a discernible name",
+      "category": "accessibility",
+      "description": "Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. [Learn how to make links accessible](https://dequeuniversity.com/rules/axe/4.10/link-name)."
+    },
+    {
+      "id": "listitem",
+      "title": "List items (`<li>`) are not contained within `<ul>`, `<ol>` or `<menu>` parent elements.",
+      "category": "accessibility",
+      "description": "Screen readers require list items (`<li>`) to be contained within a parent `<ul>`, `<ol>` or `<menu>` to be announced properly. [Learn more about proper list structure](https://dequeuniversity.com/rules/axe/4.10/listitem)."
+    },
+    {
+      "id": "inspector-issues",
+      "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+      "category": "best-practices",
+      "description": "Issues logged to the `Issues` panel in Chrome Devtools indicate unresolved problems. They can come from network request failures, insufficient security controls, and other browser concerns. Open up the Issues panel in Chrome DevTools for more details on each issue."
+    }
+  ]
+}

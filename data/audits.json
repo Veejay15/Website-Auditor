@@ -1,0 +1,222 @@
+{
+  "audits": [
+    {
+      "id": "moh3kj1r-4kje70",
+      "slug": "untitled-audit-moh3kj",
+      "status": "draft",
+      "client": {
+        "name": "",
+        "url": "",
+        "location": "",
+        "services": [],
+        "brandAccentColor": "#dc2626"
+      },
+      "competitors": [],
+      "mapPackQueries": [],
+      "mapPackResults": {},
+      "uploads": {},
+      "revenueInputs": {
+        "aov": 240,
+        "conversionRate": 0.028000000000000004
+      },
+      "createdAt": "2026-04-27T11:11:47.823Z",
+      "updatedAt": "2026-04-27T11:11:57.991Z"
+    },
+    {
+      "id": "bracelab-fixture",
+      "slug": "bracelab-fixture",
+      "status": "draft",
+      "client": {
+        "name": "BraceLab",
+        "url": "https://bracelab.com/",
+        "location": "Buffalo, NY",
+        "services": [
+          "Orthopedic braces",
+          "Sports support",
+          "Custom fitting"
+        ],
+        "brandAccentColor": "#dc2626",
+        "logoBlob": {
+          "url": "/data/audits/bracelab-fixture/uploads/logo/bracelab-logo.png",
+          "pathname": "data/audits/bracelab-fixture/uploads/logo/bracelab-logo.png",
+          "size": 0,
+          "contentType": "image/png",
+          "uploadedAt": "2026-04-27T00:00:00.000Z"
+        }
+      },
+      "competitors": [
+        {
+          "url": "https://bauerfeind.com/",
+          "label": "Bauerfeind"
+        },
+        {
+          "url": "https://breg.com/",
+          "label": "Breg"
+        },
+        {
+          "url": "https://djoglobal.com/",
+          "label": "DJO Global"
+        },
+        {
+          "url": "https://mcdavidusa.com/",
+          "label": "McDavid"
+        }
+      ],
+      "mapPackQueries": [
+        {
+          "query": "knee brace store buffalo ny"
+        },
+        {
+          "query": "ankle brace near me buffalo"
+        },
+        {
+          "query": "custom orthopedic brace buffalo"
+        },
+        {
+          "query": "elbow brace buffalo ny"
+        },
+        {
+          "query": "sports knee brace buffalo"
+        },
+        {
+          "query": "post surgery knee brace buffalo"
+        },
+        {
+          "query": "wrist support buffalo ny"
+        },
+        {
+          "query": "back brace store near me buffalo"
+        },
+        {
+          "query": "shoulder brace buffalo"
+        },
+        {
+          "query": "arthritis knee brace buffalo"
+        },
+        {
+          "query": "orthopedic supplies buffalo ny"
+        },
+        {
+          "query": "running knee brace buffalo"
+        }
+      ],
+      "mapPackResults": {
+        "knee brace store buffalo ny": {
+          "client": 2,
+          "https://bauerfeind.com/": 1,
+          "https://breg.com/": "top10",
+          "https://djoglobal.com/": "nr",
+          "https://mcdavidusa.com/": "top10"
+        },
+        "ankle brace near me buffalo": {
+          "client": "nr",
+          "https://bauerfeind.com/": 1,
+          "https://breg.com/": 3,
+          "https://djoglobal.com/": "top10",
+          "https://mcdavidusa.com/": "nr"
+        },
+        "custom orthopedic brace buffalo": {
+          "client": 1,
+          "https://bauerfeind.com/": "top10",
+          "https://breg.com/": "nr",
+          "https://djoglobal.com/": 2,
+          "https://mcdavidusa.com/": "nr"
+        },
+        "elbow brace buffalo ny": {
+          "client": "top10",
+          "https://bauerfeind.com/": 1,
+          "https://breg.com/": 2,
+          "https://djoglobal.com/": "nr",
+          "https://mcdavidusa.com/": 3
+        },
+        "sports knee brace buffalo": {
+          "client": 3,
+          "https://bauerfeind.com/": 1,
+          "https://breg.com/": "top10",
+          "https://djoglobal.com/": "top10",
+          "https://mcdavidusa.com/": 2
+        },
+        "post surgery knee brace buffalo": {
+          "client": "nr",
+          "https://bauerfeind.com/": "top10",
+          "https://breg.com/": 1,
+          "https://djoglobal.com/": 2,
+          "https://mcdavidusa.com/": "top10"
+        },
+        "wrist support buffalo ny": {
+          "client": 2,
+          "https://bauerfeind.com/": 1,
+          "https://breg.com/": "top10",
+          "https://djoglobal.com/": "nr",
+          "https://mcdavidusa.com/": 3
+        },
+        "back brace store near me buffalo": {
+          "client": "nr",
+          "https://bauerfeind.com/": 2,
+          "https://breg.com/": 1,
+          "https://djoglobal.com/": "top10",
+          "https://mcdavidusa.com/": "top10"
+        },
+        "shoulder brace buffalo": {
+          "client": "top10",
+          "https://bauerfeind.com/": 1,
+          "https://breg.com/": "top10",
+          "https://djoglobal.com/": 2,
+          "https://mcdavidusa.com/": "nr"
+        },
+        "arthritis knee brace buffalo": {
+          "client": "nr",
+          "https://bauerfeind.com/": "top10",
+          "https://breg.com/": 1,
+          "https://djoglobal.com/": "top10",
+          "https://mcdavidusa.com/": 2
+        },
+        "orthopedic supplies buffalo ny": {
+          "client": 1,
+          "https://bauerfeind.com/": "top10",
+          "https://breg.com/": 2,
+          "https://djoglobal.com/": "top10",
+          "https://mcdavidusa.com/": "nr"
+        },
+        "running knee brace buffalo": {
+          "client": "top10",
+          "https://bauerfeind.com/": 1,
+          "https://breg.com/": 3,
+          "https://djoglobal.com/": 2,
+          "https://mcdavidusa.com/": "top10"
+        }
+      },
+      "uploads": {
+        "keywordsClientCsv": {
+          "url": "/data/audits/bracelab-fixture/uploads/csv/bracelab-positions.csv",
+          "pathname": "data/audits/bracelab-fixture/uploads/csv/bracelab-positions.csv",
+          "size": 0,
+          "contentType": "text/csv",
+          "uploadedAt": "2026-04-27T00:00:00.000Z"
+        },
+        "keywordsCompetitorCsvs": [
+          {
+            "url": "/data/audits/bracelab-fixture/uploads/csv/bauerfeind-positions.csv",
+            "pathname": "data/audits/bracelab-fixture/uploads/csv/bauerfeind-positions.csv",
+            "size": 0,
+            "contentType": "text/csv",
+            "uploadedAt": "2026-04-27T00:00:00.000Z"
+          }
+        ],
+        "backlinksCsv": {
+          "url": "/data/audits/bracelab-fixture/uploads/csv/bracelab-backlinks.csv",
+          "pathname": "data/audits/bracelab-fixture/uploads/csv/bracelab-backlinks.csv",
+          "size": 0,
+          "contentType": "text/csv",
+          "uploadedAt": "2026-04-27T00:00:00.000Z"
+        }
+      },
+      "revenueInputs": {
+        "aov": 180,
+        "conversionRate": 0.025
+      },
+      "createdAt": "2026-04-27T00:00:00.000Z",
+      "updatedAt": "2026-04-27T00:00:00.000Z"
+    }
+  ]
+}
