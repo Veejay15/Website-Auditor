@@ -25,10 +25,10 @@ export async function POST(_req: NextRequest, { params }: Params) {
   }
 
   const parsed = await loadParsedAuditData(audit).catch(() => undefined) || undefined;
-  const lighthouse = audit.client.url ? loadCachedClientPair(audit.id, audit.client.url) : undefined;
+  const lighthouse = audit.client.url ? await loadCachedClientPair(audit.id, audit.client.url) : undefined;
 
   const narratives = await generateNarratives({ audit, parsed, lighthouse });
-  writeCachedNarratives(id, narratives);
+  await writeCachedNarratives(id, narratives);
 
   return NextResponse.json({ ok: true, sections: Object.keys(narratives), bytes: JSON.stringify(narratives).length });
 }

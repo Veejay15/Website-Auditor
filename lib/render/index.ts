@@ -93,9 +93,9 @@ export async function renderAuditHtml(audit: Audit): Promise<string> {
 
   const parsed = await loadParsedAuditData(audit).catch(() => null);
   const lighthouse: LhPair | undefined = audit.client.url
-    ? loadCachedClientPair(audit.id, audit.client.url)
+    ? await loadCachedClientPair(audit.id, audit.client.url)
     : undefined;
-  const narratives = readCachedNarratives(audit.id);
+  const narratives = await readCachedNarratives(audit.id);
   const sections = buildSectionList(audit);
   const tocEntries: TocEntry[] = sections.map(({ num, title }) => ({ num, title }));
 

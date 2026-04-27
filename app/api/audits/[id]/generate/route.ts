@@ -61,10 +61,10 @@ export async function POST(_req: NextRequest, { params }: Params) {
     if (isClaudeConfigured()) {
       const parsed = (await loadParsedAuditData(audit).catch(() => undefined)) || undefined;
       const { loadCachedClientPair } = await import('@/lib/lighthouse-cache');
-      const lighthouse = audit.client.url ? loadCachedClientPair(audit.id, audit.client.url) : undefined;
+      const lighthouse = audit.client.url ? await loadCachedClientPair(audit.id, audit.client.url) : undefined;
       try {
         const narratives = await generateNarratives({ audit, parsed, lighthouse });
-        writeCachedNarratives(audit.id, narratives);
+        await writeCachedNarratives(audit.id, narratives);
       } catch (err) {
         errors.push(`Claude: ${(err as Error).message}`);
       }

@@ -66,9 +66,9 @@ const errors: string[] = [];
     console.log(`[generate-audit] Generating Claude narratives...`);
     try {
       const parsed = (await loadParsedAuditData(audit).catch(() => undefined)) || undefined;
-      const lighthouse = audit.client.url ? loadCachedClientPair(audit.id, audit.client.url) : undefined;
+      const lighthouse = audit.client.url ? await loadCachedClientPair(audit.id, audit.client.url) : undefined;
       const narratives = await generateNarratives({ audit, parsed, lighthouse });
-      writeCachedNarratives(audit.id, narratives);
+      await writeCachedNarratives(audit.id, narratives);
       console.log(`[generate-audit]   ${Object.keys(narratives).length} sections written`);
     } catch (err) {
       errors.push(`Claude: ${(err as Error).message}`);
